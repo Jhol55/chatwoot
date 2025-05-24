@@ -68,7 +68,7 @@ const menuItems = computed(() => {
       link: { name: 'profile_settings_index' },
     },
     {
-      show: true,
+      show: false,
       showOnCustomBrandedInstance: true,
       label: t('SIDEBAR_ITEMS.APPEARANCE'),
       icon: 'i-lucide-palette',

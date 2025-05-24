@@ -150,7 +150,7 @@ export default {
             </a>
           </router-link>
         </WootDropdownItem>
-        <WootDropdownItem>
+        <!-- <WootDropdownItem>
           <NextButton
             ghost
             sm
@@ -163,7 +163,7 @@ export default {
               {{ $t('SIDEBAR_ITEMS.APPEARANCE') }}
             </span>
           </NextButton>
-        </WootDropdownItem>
+        </WootDropdownItem> -->
         <WootDropdownItem v-if="currentUser.type === 'SuperAdmin'">
           <a
             href="/super_admin"
