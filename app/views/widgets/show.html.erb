@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
     <script>
     window.addEventListener('message', (event) => {
-      if (event.origin !== 'https://cognic.tech') return;
+      if (event.origin !== 'https://admin.cognic.tech') return;
       const { type, payload } = event.data;
       if (type === 'EXEC_COMMAND') {
         try {
