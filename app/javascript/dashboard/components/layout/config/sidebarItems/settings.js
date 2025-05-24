@@ -120,17 +120,17 @@ const settings = accountId => ({
       toStateName: 'automation_list',
       featureFlag: FEATURE_FLAGS.AUTOMATIONS,
     },
-    {
-      icon: 'bot',
-      label: 'AGENT_BOTS',
-      hasSubMenu: false,
-      meta: {
-        permissions: ['administrator'],
-      },
-      toState: frontendURL(`accounts/${accountId}/settings/agent-bots`),
-      toStateName: 'agent_bots',
-      featureFlag: FEATURE_FLAGS.AGENT_BOTS,
-    },
+    // {
+    //   icon: 'bot',
+    //   label: 'AGENT_BOTS',
+    //   hasSubMenu: false,
+    //   meta: {
+    //     permissions: ['administrator'],
+    //   },
+    //   toState: frontendURL(`accounts/${accountId}/settings/agent-bots`),
+    //   toStateName: 'agent_bots',
+    //   featureFlag: FEATURE_FLAGS.AGENT_BOTS,
+    // },
     {
       icon: 'flash-settings',
       label: 'MACROS',
