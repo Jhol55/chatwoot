@@ -78,7 +78,7 @@ const menuItems = computed(() => {
       },
     },
     {
-      show: true,
+      show: false,
       showOnCustomBrandedInstance: false,
       label: t('SIDEBAR_ITEMS.DOCS'),
       icon: 'i-lucide-book',
