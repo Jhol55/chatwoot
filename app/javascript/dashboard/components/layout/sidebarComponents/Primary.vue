@@ -73,13 +73,13 @@ export default {
   <div
     class="flex flex-col justify-between w-16 h-full bg-white border-r dark:bg-slate-900 border-slate-50 dark:border-slate-800/50 rtl:border-l rtl:border-r-0"
   >
-    <div class="flex flex-col items-center">
-      <Logo
+    <div class="flex flex-col items-center gap-2">
+      <!-- <Logo
         :source="logoSource"
         :name="installationName"
         :account-id="accountId"
         class="m-4 mb-10"
-      />
+      /> -->
       <PrimaryNavItem
         v-for="menuItem in menuItems"
         :id="menuItem.key"
@@ -95,7 +95,7 @@ export default {
         v-if="!isACustomBrandedInstance"
         v-tooltip.right="$t(`SIDEBAR.DOCS`)"
         :href="helpDocsURL"
-        class="relative flex items-center justify-center w-10 h-10 my-2 rounded-lg text-slate-700 dark:text-slate-100 hover:bg-slate-25 dark:hover:bg-slate-700 dark:hover:text-slate-100 hover:text-slate-600"
+        class="relative flex items-center justify-center w-10 h-10 rounded-lg text-slate-700 dark:text-slate-100 hover:bg-slate-25 dark:hover:bg-slate-700 dark:hover:text-slate-100 hover:text-slate-600"
         rel="noopener noreferrer nofollow"
         target="_blank"
       >
