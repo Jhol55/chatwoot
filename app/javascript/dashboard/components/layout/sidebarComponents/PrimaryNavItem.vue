@@ -95,7 +95,7 @@ export default {
   <OnClickOutside v-if="isHelpCenter" @trigger="showHelpCenterMenu = false">
     <button
       v-tooltip.top="$t(`SIDEBAR.${name}`)"
-      class="relative flex items-center justify-center w-10 h-10 my-2 rounded-lg text-slate-700 dark:text-slate-100 hover:!bg-slate-25 dark:hover:!bg-slate-700 dark:hover:text-slate-100 hover:text-slate-600"
+      class="relative flex items-center justify-center w-10 h-10 rounded-lg text-slate-700 dark:text-slate-100 hover:!bg-slate-25 dark:hover:!bg-slate-700 dark:hover:text-slate-100 hover:text-slate-600"
       :class="{
         'bg-woot-50 dark:bg-slate-800 text-woot-500 hover:bg-woot-50':
           isHelpCenterSelected,
@@ -121,7 +121,7 @@ export default {
     <a
       v-tooltip.right="$t(`SIDEBAR.${name}`)"
       :href="href"
-      class="relative flex items-center justify-center w-10 h-10 my-2 rounded-lg text-slate-700 dark:text-slate-100 hover:bg-slate-25 dark:hover:bg-slate-700 dark:hover:text-slate-100 hover:text-slate-600"
+      class="relative flex items-center justify-center w-10 h-10 rounded-lg text-slate-700 dark:text-slate-100 hover:bg-slate-25 dark:hover:bg-slate-700 dark:hover:text-slate-100 hover:text-slate-600"
       :class="{
         'bg-woot-50 dark:bg-slate-800 text-woot-500 hover:bg-woot-50':
           isActive || isChildMenuActive,
