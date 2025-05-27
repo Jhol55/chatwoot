@@ -80,10 +80,12 @@ COPY . /app
 # https://github.com/chatwoot/chatwoot/issues/701
 RUN mkdir -p /app/log
 
+ARG SECRET_KEY_BASE
+ENV SECRET_KEY_BASE=$SECRET_KEY_BASE
 # generate production assets if production environment
 RUN if [ "$RAILS_ENV" = "production" ]; then \
-  SECRET_KEY_BASE=precompile_placeholder RAILS_LOG_TO_STDOUT=enabled bundle exec rake assets:precompile \
-  && rm -rf spec node_modules tmp/cache; \
+  RAILS_LOG_TO_STDOUT=enabled bundle exec rake assets:precompile && \
+  rm -rf spec node_modules tmp/cache; \
   fi
 
 # Generate .git_sha file with current commit hash
