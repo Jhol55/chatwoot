@@ -34,10 +34,16 @@ const primaryMenuItems = accountId => [
     toStateName: 'contacts_dashboard_index',
   },
   {
-    icon: 'book-contacts',
+    icon: 'briefcase',
+    key: 'services',
+    label: 'SERVICES',
+    toState: frontendURL(`accounts/${accountId}/services`),
+    toStateName: 'services_index',
+  },
+  {
+    icon: 'calendar',
     key: 'calendar',
     label: 'CALENDAR',
-    featureFlag: FEATURE_FLAGS.CRM,
     toState: frontendURL(`accounts/${accountId}/calendar`),
     toStateName: 'calendar_index',
   },

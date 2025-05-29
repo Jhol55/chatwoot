@@ -28,10 +28,18 @@ export const setUser = user => {
 export const getHeaderExpiry = response =>
   fromUnixTime(response.headers.expiry);
 
+const getBaseDomain = (hostname) => {
+  const parts = hostname.split('.');
+  return parts.length > 2 ? `.${parts.slice(-2).join('.')}` : hostname;
+};
+
+const baseDomain = getBaseDomain(window.location.hostname);
+
 export const setAuthCredentials = response => {
   const expiryDate = getHeaderExpiry(response);
   Cookies.set('cw_d_session_info', JSON.stringify(response.headers), {
     expires: differenceInDays(expiryDate, new Date()),
+    domain: baseDomain
   });
   setUser(response.data.data, expiryDate);
 };
