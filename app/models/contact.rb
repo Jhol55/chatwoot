@@ -153,6 +153,7 @@ class Contact < ApplicationRecord
       identifier: identifier,
       name: name,
       phone_number: phone_number,
+      cpf_cnpj: cpf_cnpj,
       thumbnail: avatar_url,
       blocked: blocked,
       type: 'contact'
@@ -170,6 +171,7 @@ class Contact < ApplicationRecord
       identifier: identifier,
       name: name,
       phone_number: phone_number,
+      cpf_cnpj: cpf_cnpj,
       thumbnail: avatar_url,
       blocked: blocked
     }

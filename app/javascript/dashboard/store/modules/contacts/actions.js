@@ -98,6 +98,7 @@ export const actions = {
       ...(avatar && { avatar }),
     };
     commit(types.SET_CONTACT_UI_FLAG, { isUpdating: true });
+    console.log(decamelizedContactParams)
     try {
       const response = await ContactAPI.update(
         id,

@@ -70,6 +70,7 @@ const toggleExpanded = id => {
       :email="contact.email"
       :thumbnail="contact.thumbnail"
       :phone-number="contact.phoneNumber"
+      :cpf-cnpj="contact.cpfCnpj"
       :additional-attributes="contact.additionalAttributes"
       :is-expanded="expandedCardId === contact.id"
       :is-updating="isUpdating"

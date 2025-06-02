@@ -30,6 +30,7 @@ const getThemeOptions = t => [
 
 const setAppearance = theme => {
   LocalStorage.set(LOCAL_STORAGE_KEYS.COLOR_SCHEME, theme);
+  window.dispatchEvent(new Event('theme-change'));
   const isOSOnDarkMode = window.matchMedia(
     '(prefers-color-scheme: dark)'
   ).matches;

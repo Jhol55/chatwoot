@@ -358,6 +358,7 @@ class InitSchema < ActiveRecord::Migration[6.1]
       t.string "name"
       t.string "email"
       t.string "phone_number"
+      t.string "cpf_cnpj", default: ""
       t.integer "account_id", null: false
       t.datetime "created_at", precision: nil, null: false
       t.datetime "updated_at", precision: nil, null: false

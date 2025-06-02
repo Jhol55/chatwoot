@@ -34,6 +34,7 @@ const FORM_CONFIG = {
   LAST_NAME: { field: 'lastName' },
   EMAIL_ADDRESS: { field: 'email' },
   PHONE_NUMBER: { field: 'phoneNumber' },
+  CPF_CNPJ: { field: 'cpfCnpj'},
   CITY: { field: 'additionalAttributes.city' },
   COUNTRY: { field: 'additionalAttributes.countryCode' },
   BIO: { field: 'additionalAttributes.description' },
@@ -55,6 +56,7 @@ const defaultState = {
   firstName: '',
   lastName: '',
   phoneNumber: '',
+  cpfCnpj: '',
   additionalAttributes: {
     description: '',
     companyName: '',
@@ -92,6 +94,7 @@ const prepareStateBasedOnProps = () => {
     name = '',
     email: emailAddress,
     phoneNumber,
+    cpfCnpj = '',
     additionalAttributes = {},
   } = props.contactData || {};
   const { firstName, lastName } = splitName(name || '');
@@ -111,6 +114,7 @@ const prepareStateBasedOnProps = () => {
     lastName,
     email: emailAddress,
     phoneNumber,
+    cpfCnpj,
     additionalAttributes: {
       description,
       companyName,

@@ -421,6 +421,9 @@
             "PLACEHOLDER": "Digite o número de telefone",
             "DUPLICATE": "Este número de telefone está em uso para outro contato."
           },
+          "CPF_CNPJ": {
+            "PLACEHOLDER": "Digite um CPF ou CNPJ"
+          },
           "CITY": {
             "PLACEHOLDER": "Digite o nome da cidade"
           },

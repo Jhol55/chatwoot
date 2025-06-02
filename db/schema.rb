@@ -494,6 +494,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_23_031839) do
     t.string "name", default: ""
     t.string "email"
     t.string "phone_number"
+    t.string "cpf_cnpj", default: ""
     t.integer "account_id", null: false
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false

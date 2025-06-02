@@ -65,7 +65,7 @@ class Api::V1::ProfilesController < Api::BaseController
   end
 
   def custom_attributes_params
-    params.require(:profile).permit(:phone_number)
+    params.require(:profile).permit(:phone_number, :cpf_cnpj)
   end
 
   def password_params

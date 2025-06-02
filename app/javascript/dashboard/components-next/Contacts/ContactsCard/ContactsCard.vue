@@ -32,6 +32,7 @@ const getInitialContactData = () => ({
   name: props.name,
   email: props.email,
   phoneNumber: props.phoneNumber,
+  cpfCnpj: props.cpfCnpj,
   additionalAttributes: props.additionalAttributes,
 });
 

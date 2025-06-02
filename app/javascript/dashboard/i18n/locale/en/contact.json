@@ -422,6 +422,9 @@
             "PLACEHOLDER": "Enter the phone number",
             "DUPLICATE": "This phone number is in use for another contact."
           },
+          "CPF_CNPJ": {
+            "PLACEHOLDER": "Enter the CPF or CNPJ"
+          },
           "CITY": {
             "PLACEHOLDER": "Enter the city name"
           },
