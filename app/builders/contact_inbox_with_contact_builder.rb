@@ -53,6 +53,7 @@ class ContactInboxWithContactBuilder
       name: contact_attributes[:name] || ::Haikunator.haikunate(1000),
       phone_number: contact_attributes[:phone_number],
       email: contact_attributes[:email],
+      cpf_cnpj: contact_attributes[:cpf_cnpj],
       identifier: contact_attributes[:identifier],
       additional_attributes: contact_attributes[:additional_attributes],
       custom_attributes: contact_attributes[:custom_attributes]

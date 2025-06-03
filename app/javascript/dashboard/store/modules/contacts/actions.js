@@ -73,6 +73,11 @@ export const actions = {
     } catch (error) {
       commit(types.SET_CONTACT_UI_FLAG, { isFetching: false });
     }
+    try {
+      console.log(await ContactAPI.get(page, sortAttr, label))
+    } catch {
+      
+    }
   },
 
   show: async ({ commit }, { id }) => {
@@ -98,7 +103,6 @@ export const actions = {
       ...(avatar && { avatar }),
     };
     commit(types.SET_CONTACT_UI_FLAG, { isUpdating: true });
-    console.log(decamelizedContactParams)
     try {
       const response = await ContactAPI.update(
         id,

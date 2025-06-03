@@ -20,7 +20,7 @@ const iframeLoaded = ref(false)
 function updateIframeSrc() {
   const theme = localStorage.getItem('color_scheme') || 'system'
   iframeLoaded.value = false // Reset opacity before loading new URL
-  iframeSrc.value = `https://admin.cognic.tech/admin?theme=${encodeURIComponent(theme)}`
+  iframeSrc.value = `https://calendar.cognic.tech/admin?theme=${encodeURIComponent(theme)}`
 }
 
 function handleStorageChange(event) {

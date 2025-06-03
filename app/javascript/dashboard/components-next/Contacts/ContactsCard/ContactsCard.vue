@@ -16,6 +16,7 @@ const props = defineProps({
   email: { type: String, default: '' },
   additionalAttributes: { type: Object, default: () => ({}) },
   phoneNumber: { type: String, default: '' },
+  cpfCnpj: { type: String, default: '' },
   thumbnail: { type: String, default: '' },
   isExpanded: { type: Boolean, default: false },
   isUpdating: { type: Boolean, default: false },
@@ -81,6 +82,7 @@ const handleFormUpdate = updatedData => {
 const handleUpdateContact = () => {
   emit('updateContact', contactData.value);
 };
+
 
 const onClickExpand = () => {
   emit('toggle');

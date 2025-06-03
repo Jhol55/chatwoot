@@ -50,6 +50,7 @@ export const actions = {
         avatar_url,
         identifier_hash: identifierHash,
         phone_number,
+        cpf_cnpj,
         company_name,
         city,
         country_code,
@@ -63,6 +64,7 @@ export const actions = {
         avatar_url,
         identifier_hash: identifierHash,
         phone_number,
+        cpf_cnpj,
         additional_attributes: {
           company_name,
           city,

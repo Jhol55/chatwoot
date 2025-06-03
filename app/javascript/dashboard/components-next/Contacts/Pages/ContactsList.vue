@@ -21,6 +21,7 @@ const uiFlags = useMapGetter('contacts/getUIFlags');
 const isUpdating = computed(() => uiFlags.value.isUpdating);
 const expandedCardId = ref(null);
 
+
 const updateContact = async updatedData => {
   try {
     await store.dispatch('contacts/update', updatedData);

@@ -41,6 +41,7 @@ export default {
       email: '',
       name: '',
       phoneNumber: '',
+      cpfCnpj: '',
       activeDialCode: '',
       avatarFile: null,
       avatarUrl: '',
@@ -73,6 +74,7 @@ export default {
     },
     companyName: {},
     phoneNumber: {},
+    cpfCnpj: {},
     bio: {},
   },
   computed: {
@@ -144,6 +146,7 @@ export default {
       const {
         email: emailAddress,
         phone_number: phoneNumber,
+        cpf_cnpj: cpfCnpj,
         name,
       } = this.contact;
       const additionalAttributes = this.contact.additional_attributes || {};
@@ -151,6 +154,7 @@ export default {
       this.name = name || '';
       this.email = emailAddress || '';
       this.phoneNumber = phoneNumber || '';
+      this.cpfCnpj = cpfCnpj || '';
       this.companyName = additionalAttributes.company_name || '';
       this.country = {
         id: additionalAttributes.country_code || '',
@@ -185,6 +189,7 @@ export default {
         name: this.name,
         email: this.email,
         phone_number: this.setPhoneNumber,
+        cpf_cnpj: this.cpfCnpj,
         additional_attributes: {
           ...this.contact.additional_attributes,
           description: this.description,
