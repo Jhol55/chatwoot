@@ -22,6 +22,7 @@ import sla from './sla/sla.routes';
 import teams from './teams/teams.routes';
 import customRoles from './customRoles/customRole.routes';
 import profile from './profile/profile.routes';
+import calendars from './calendars/calendars.routes';
 
 export default {
   routes: [
@@ -44,6 +45,7 @@ export default {
     },
     ...account.routes,
     ...agent.routes,
+    ...calendars.routes,
     ...agentBot.routes,
     ...attributes.routes,
     ...automation.routes,

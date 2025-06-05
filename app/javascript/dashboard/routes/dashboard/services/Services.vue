@@ -16,11 +16,12 @@ import { ref, onMounted, onBeforeUnmount } from 'vue'
 
 const iframeSrc = ref('')
 const iframeLoaded = ref(false)
+const CALENDAR_DOMAIN = "https://" + window.PROJECT_NAME + "-" + window.CALENDAR_SERVICE_NAME + "." + window.CHATWOOT_DOMAIN.split('.').slice(1).join('.')
 
 function updateIframeSrc() {
   const theme = localStorage.getItem('color_scheme') || 'system'
   iframeLoaded.value = false // Reset opacity before loading new URL
-  iframeSrc.value = `https://calendar.cognic.tech/services?theme=${encodeURIComponent(theme)}`
+  iframeSrc.value = `${CALENDAR_DOMAIN}/services?theme=${encodeURIComponent(theme)}`
 }
 
 function handleStorageChange(event) {

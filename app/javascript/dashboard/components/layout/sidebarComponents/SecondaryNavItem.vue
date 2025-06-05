@@ -101,6 +101,12 @@ export default {
         this.menuItem.toStateName === 'settings_inbox_list'
       );
     },
+    isCalendarSettings() {
+      return (
+        this.$route.name === 'settings_calendar_show' &&
+        this.menuItem.toStateName === 'settings_calendar_list'
+      );
+    },
     isIntegrationsSettings() {
       return (
         this.$store.state.route.name === 'settings_integrations_webhook' &&
@@ -140,6 +146,7 @@ export default {
         if (
           this.isTeamsSettings ||
           this.isInboxSettings ||
+          this.isCalendarSettings ||
           this.isIntegrationsSettings ||
           this.isApplicationsSettings
         ) {

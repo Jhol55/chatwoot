@@ -398,6 +398,12 @@ const menuItems = computed(() => {
           to: accountScopedRoute('settings_teams_list'),
         },
         {
+          name: 'Settings Calendars',
+          label: t('SIDEBAR.CALENDARS'),
+          icon: 'i-lucide-calendar',
+          to: accountScopedRoute('settings_calendar_list'),
+        },
+        {
           name: 'Settings Inboxes',
           label: t('SIDEBAR.INBOXES'),
           icon: 'i-lucide-inbox',

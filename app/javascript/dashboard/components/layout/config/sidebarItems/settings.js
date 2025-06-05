@@ -6,6 +6,7 @@ const settings = accountId => ({
   routes: [
     'agent_bots',
     'agent_list',
+    'calendars_list',
     'attributes_list',
     'automation_list',
     'auditlogs_list',
@@ -38,6 +39,7 @@ const settings = accountId => ({
     'settings_teams_finish',
     'settings_teams_list',
     'settings_teams_new',
+    'settings_calendar_list',
     'sla_list',
     'custom_roles_list',
   ],
@@ -62,6 +64,16 @@ const settings = accountId => ({
       toState: frontendURL(`accounts/${accountId}/settings/agents/list`),
       toStateName: 'agent_list',
       featureFlag: FEATURE_FLAGS.AGENT_MANAGEMENT,
+    },
+    {
+      icon: 'calendar',
+      label: 'CALENDARS',
+      hasSubMenu: false,
+      meta: {
+        permissions: ['administrator'],
+      },
+      toState: frontendURL(`accounts/${accountId}/settings/calendars/list`),
+      toStateName: 'calendars_list',
     },
     {
       icon: 'people-team',

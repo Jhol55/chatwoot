@@ -16,13 +16,12 @@ import { ref, onMounted, onBeforeUnmount } from 'vue'
 
 const iframeSrc = ref('')
 const iframeLoaded = ref(false)
-
 const CALENDAR_DOMAIN = "https://" + window.PROJECT_NAME + "-" + window.CALENDAR_SERVICE_NAME + "." + window.CHATWOOT_DOMAIN.split('.').slice(1).join('.')
 
 function updateIframeSrc() {
   const theme = localStorage.getItem('color_scheme') || 'system'
   iframeLoaded.value = false // Reset opacity before loading new URL
-  iframeSrc.value = `${CALENDAR_DOMAIN}/admin?theme=${encodeURIComponent(theme)}`
+  iframeSrc.value = `${CALENDAR_DOMAIN}/calendars?theme=${encodeURIComponent(theme)}`
 }
 
 function handleStorageChange(event) {

@@ -31,6 +31,11 @@
     <link rel="icon" type="image/png" sizes="512x512" href="<%= @global_config['LOGO_THUMBNAIL'] %>">
     <%= csrf_meta_tags %>
     <script>
+      window.CHATWOOT_DOMAIN = "<%= ENV['CHATWOOT_DOMAIN'] %>";
+      window.PROJECT_NAME = "<%= ENV['PROJECT_NAME'] %>";
+      window.CALENDAR_SERVICE_NAME = "<%= ENV['CALENDAR_SERVICE_NAME'] %>";
+    </script>
+    <script>
       window.chatwootConfig = {
         hostURL: '<%= ENV.fetch('FRONTEND_URL', '') %>',
         helpCenterURL: '<%= ENV.fetch('HELPCENTER_URL', '') %>',

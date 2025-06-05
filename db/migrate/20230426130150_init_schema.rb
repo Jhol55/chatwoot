@@ -871,6 +871,105 @@ class InitSchema < ActiveRecord::Migration[6.1]
         for_each(:row) do
       "NEW.display_id := nextval('camp_dpid_seq_' || NEW.account_id);"
     end
+    create_table :clients, id: :bigserial do |t|
+      t.timestamps default: -> { 'NOW()' }
+      t.string :name
+      t.string :cpf, unique: true
+      t.string :remote_jid
+      t.text :asaas_client_id
+    end
+    create_table :services, id: :bigserial do |t|
+      t.timestamps default: -> { 'NOW()' }
+      t.string :name
+      t.text :description
+      t.decimal :price
+      t.string :category
+      t.integer :duration_minutes
+      t.boolean :active
+      t.boolean :allow_online, default: true
+      t.boolean :allow_in_person, default: true
+    end
+    create_table :documents do |t|
+      t.string :filename, null: false
+      t.text :summary, null: false
+      t.float :size
+    end
+    create_table :knowledge, id: :bigserial do |t|
+      t.text :content
+      t.jsonb :metadata
+      t.column :embedding, :vector # ou outro tipo USER-DEFINED se estiver usando pgvector
+    end
+    create_table :n8n_chat_histories do |t|
+      t.string :session_id, null: false
+      t.jsonb :message, null: false
+      t.datetime :created_at, default: -> { 'NOW()' }
+    end
+    create_table :notifications, id: :bigserial do |t|
+      t.datetime :created_at, null: false, default: -> { 'NOW()' }
+      t.text :type
+      t.boolean :is_read
+      t.text :title
+      t.bigint :ref_id
+    end
+    create_table :operating_hours, id: :bigserial do |t|
+      t.datetime :created_at, null: false, default: -> { 'NOW()' }
+      t.integer :day_of_week
+      t.time :start_time
+      t.time :end_time
+      t.boolean :closed, default: false
+    end
+    create_table :prompts, id: :bigserial do |t|
+      t.string :prompt
+      t.string :agent, unique: true
+    end
+    create_table :settings, id: :bigserial do |t|
+      t.datetime :created_at, null: false, default: -> { 'NOW()' }
+      t.text :value
+      t.text :type
+      t.text :service
+    end
+    create_table :unavailable_periods, id: :bigserial do |t|
+      t.datetime :created_at, null: false, default: -> { 'NOW()' }
+      t.datetime :start
+      t.datetime :end
+      t.boolean :is_recurring
+      t.text :description
+      t.text :freq
+      t.integer :interval
+      t.boolean :blocked, default: false
+    end
+    create_table :user, id: :bigserial do |t|
+      t.datetime :created_at, null: false, default: -> { 'NOW()' }
+      t.string :email, null: false
+      t.string :password, null: false
+    end
+    create_table :appointments, id: :bigserial do |t|
+      t.datetime :created_at, null: false, default: -> { 'NOW()' }
+      t.datetime :start_time
+      t.datetime :end_time
+      t.bigint :client_id
+      t.bigint :service_id
+      t.bigint :calendar_id, default: 1
+      t.text :created_by
+      t.boolean :is_online, default: false
+      t.text :status
+      t.text :confirm_query
+      t.datetime :reschedule_deadline
+    end
+    add_foreign_key :appointments, :contacts, column: :client_id
+    add_foreign_key :appointments, :services, column: :service_id
+    create_table :payments, id: :bigserial do |t|
+      t.datetime :created_at, null: false, default: -> { 'NOW()' }
+      t.bigint :appointment_id
+      t.text :payment_id
+      t.decimal :value
+      t.text :status, default: 'pending'
+      t.text :type
+      t.text :link
+      t.date :due_date
+      t.text :billing_type
+    end
+    add_foreign_key :payments, :appointments, column: :appointment_id
   end
 
   def down
