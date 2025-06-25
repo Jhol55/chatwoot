@@ -495,6 +495,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_23_031839) do
     t.string "email"
     t.string "phone_number"
     t.string "cpf_cnpj", default: ""
+    t.string "asaas_client_id", default: ""
     t.integer "account_id", null: false
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
@@ -1132,16 +1133,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_23_031839) do
     "NEW.display_id := nextval('camp_dpid_seq_' || NEW.account_id);"
   end
 
-  create_table "clients", id: :bigserial, force: :cascade do |t|
-    t.datetime "created_at", null: false, default: -> { "NOW()" }
-    t.datetime "updated_at", null: false, default: -> { "NOW()" }
-    t.string "name"
-    t.string "cpf"
-    t.string "remote_jid"
-    t.text "asaas_client_id"
-    t.index ["cpf"], name: "index_clients_on_cpf", unique: true
-  end
-
   create_table "services", id: :bigserial, force: :cascade do |t|
     t.datetime "created_at", null: false, default: -> { "NOW()" }
     t.datetime "updated_at", null: false, default: -> { "NOW()" }
@@ -1173,20 +1164,13 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_23_031839) do
     t.datetime "created_at", default: -> { "NOW()" }
   end
 
-  create_table "notifications", id: :bigserial, force: :cascade do |t|
-    t.datetime "created_at", null: false, default: -> { "NOW()" }
-    t.text "type"
-    t.boolean "is_read"
-    t.text "title"
-    t.bigint "ref_id"
-  end
-
   create_table "operating_hours", id: :bigserial, force: :cascade do |t|
     t.datetime "created_at", null: false, default: -> { "NOW()" }
     t.integer "day_of_week"
     t.time "start_time"
     t.time "end_time"
     t.boolean "closed", default: false
+    t.integer "calendar_id", null: false
   end
 
   create_table "prompts", id: :bigserial, force: :cascade do |t|
@@ -1199,23 +1183,19 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_23_031839) do
     t.text "value"
     t.text "type"
     t.text "service"
+    t.integer "calendar_id", null: false
   end
 
   create_table "unavailable_periods", id: :bigserial, force: :cascade do |t|
     t.datetime "created_at", null: false, default: -> { "NOW()" }
     t.datetime "start"
     t.datetime "end"
+    t.integer "calendar_id", null: false
     t.boolean "is_recurring"
     t.text "description"
     t.text "freq"
     t.integer "interval"
     t.boolean "blocked", default: false
-  end
-
-  create_table "user", id: :bigserial, force: :cascade do |t|
-    t.datetime "created_at", null: false, default: -> { "NOW()" }
-    t.string "email", null: false
-    t.string "password", null: false
   end
 
   create_table "appointments", id: :bigserial, force: :cascade do |t|
@@ -1224,7 +1204,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_23_031839) do
     t.datetime "end_time"
     t.bigint "client_id"
     t.bigint "service_id"
-    t.bigint "calendar_id", default: 1
+    t.bigint "calendar_id"
     t.text "created_by"
     t.boolean "is_online", default: false
     t.text "status"
@@ -1244,8 +1224,34 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_23_031839) do
     t.text "billing_type"
   end
 
+  create_table "calendars", id: :bigserial, force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+  end
+
+  create_table "users_calendars", id: :bigserial, force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "calendar_id", null: false
+  end
+
+  create_table "teams_calendars", id: :bigserial, force: :cascade do |t|
+    t.integer "team_id", null: false
+    t.integer "calendar_id", null: false
+  end
+
+  create_table "services_calendars", id: :bigserial, force: :cascade do |t|
+    t.integer "service_id", null: false
+    t.integer "calendar_id", null: false
+  end
+
   add_foreign_key "appointments", "contacts", column: "client_id"
   add_foreign_key "appointments", "services", column: "service_id"
   add_foreign_key "payments", "appointments", column: "appointment_id"
+  add_foreign_key "users_calendars", "calendars", column: "calendar_id"
+  add_foreign_key "teams_calendars", "teams", column: "team_id"
+  add_foreign_key "teams_calendars", "calendars", column: "calendar_id"
+  add_foreign_key "services_calendars", "services", column: "service_id"
+  add_foreign_key "services_calendars", "calendars", column: "calendar_id"
+  add_foreign_key "unavailable_periods", "calendars", column: "calendar_id"
 
 end

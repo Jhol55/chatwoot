@@ -30,6 +30,7 @@ const updateActiveIndex = inject('updateActiveIndex');
 const active = computed(() => props.index === activeIndex.value);
 const getItemCount = computed(() => props.count);
 
+
 const onTabClick = event => {
   event.preventDefault();
   if (!props.disabled) {

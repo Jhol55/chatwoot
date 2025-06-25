@@ -32,6 +32,8 @@ import { domPurifyConfig } from 'shared/helpers/HTMLSanitizer.js';
 import { vResizeObserver } from '@vueuse/components';
 import { directive as onClickaway } from 'vue3-click-away';
 
+import { createPinia } from 'pinia';
+
 import 'floating-vue/dist/style.css';
 
 const i18n = createI18n({
@@ -46,6 +48,9 @@ const app = createApp(App);
 app.use(i18n);
 app.use(store);
 app.use(router);
+
+const pinia = createPinia();
+app.use(pinia);
 
 // [VITE] Disabled this, need to renable later
 if (window.errorLoggingConfig) {

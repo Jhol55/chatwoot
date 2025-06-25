@@ -1,7 +1,7 @@
-
 <template>
   <div class="h-full w-full">
     <iframe
+      :key="iframeSrc"
       :src="iframeSrc"
       class="w-full h-full border-0 transition-opacity duration-300"
       :style="{ opacity: iframeLoaded ? 1 : 0 }"
@@ -12,16 +12,28 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
+import { useAccount } from 'dashboard/composables/useAccount';
 
 const iframeSrc = ref('')
 const iframeLoaded = ref(false)
+
+const { accountId } = useAccount();
+
 const CALENDAR_DOMAIN = "https://" + window.PROJECT_NAME + "-" + window.CALENDAR_SERVICE_NAME + "." + window.CHATWOOT_DOMAIN.split('.').slice(1).join('.')
 
 function updateIframeSrc() {
   const theme = localStorage.getItem('color_scheme') || 'system'
-  iframeLoaded.value = false // Reset opacity before loading new URL
-  iframeSrc.value = `${CALENDAR_DOMAIN}/calendars?theme=${encodeURIComponent(theme)}`
+  const currentAccountId = accountId.value;
+
+  iframeLoaded.value = false
+
+  if (currentAccountId) {
+    iframeSrc.value = `${CALENDAR_DOMAIN}/calendars?theme=${encodeURIComponent(theme)}&accountId=${encodeURIComponent(currentAccountId)}`
+  } else {
+
+    iframeSrc.value = `${CALENDAR_DOMAIN}/calendars?theme=${encodeURIComponent(theme)}`
+  }
 }
 
 function handleStorageChange(event) {
@@ -40,6 +52,14 @@ onBeforeUnmount(() => {
   window.removeEventListener('storage', handleStorageChange)
   window.removeEventListener('theme-change', updateIframeSrc)
 })
+
+
+watch(accountId, (newAccountId, oldAccountId) => {
+  if (newAccountId !== oldAccountId && newAccountId) {
+    updateIframeSrc();
+  }
+}, { immediate: true });
+
 </script>
 
 <style scoped>

@@ -359,6 +359,7 @@ class InitSchema < ActiveRecord::Migration[6.1]
       t.string "email"
       t.string "phone_number"
       t.string "cpf_cnpj", default: ""
+      t.string "asaas_client_id", default: ""
       t.integer "account_id", null: false
       t.datetime "created_at", precision: nil, null: false
       t.datetime "updated_at", precision: nil, null: false
@@ -917,6 +918,7 @@ class InitSchema < ActiveRecord::Migration[6.1]
       t.time :start_time
       t.time :end_time
       t.boolean :closed, default: false
+      t.integer :calendar_id, null: false
     end
     create_table :prompts, id: :bigserial do |t|
       t.string :prompt
@@ -927,6 +929,7 @@ class InitSchema < ActiveRecord::Migration[6.1]
       t.text :value
       t.text :type
       t.text :service
+      t.integer :calendar_id, null: false
     end
     create_table :unavailable_periods, id: :bigserial do |t|
       t.datetime :created_at, null: false, default: -> { 'NOW()' }
@@ -970,6 +973,34 @@ class InitSchema < ActiveRecord::Migration[6.1]
       t.text :billing_type
     end
     add_foreign_key :payments, :appointments, column: :appointment_id
+
+    create_table :calendars, id: :bigserial do |t|
+      t.string :name, null: false
+      t.text :description
+    end
+
+    create_table :users_calendars, id: :bigserial do |t|
+      t.integer :user_id, null: false
+      t.integer :calendar_id, null: false
+    end
+
+    create_table :teams_calendars, id: :bigserial do |t|
+      t.integer :team_id, null: false
+      t.integer :calendar_id, null: false
+    end
+
+    create_table :services_calendars, id: :bigserial do |t|
+      t.integer :service_id, null: false
+      t.integer :calendar_id, null: false
+    end
+
+    add_foreign_key :users_calendars, :calendars, column: :calendar_id
+    add_foreign_key :teams_calendars, :teams, column: :team_id
+    add_foreign_key :teams_calendars, :calendars, column: :calendar_id
+    add_foreign_key :services_calendars, :services, column: :service_id
+    add_foreign_key :services_calendars, :calendars, column: :calendar_id
+    add_foreign_key :unavailable_periods, :calendars, column: :calendar_id
+
   end
 
   def down
