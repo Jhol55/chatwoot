@@ -109,6 +109,18 @@
         "PLACEHOLDER": "Digite o nome da empresa",
         "LABEL": "Nome da empresa"
       },
+      "ZIP_CODE": {
+        "PLACEHOLDER": "Digite o CEP",
+        "LABEL": "CEP"
+      },
+      "ADDRESS": {
+        "PLACEHOLDER": "Digite o endereço",
+        "LABEL": "Endereço"
+      },
+      "ADDRESS_NUMBER": {
+        "PLACEHOLDER": "Digite o número",
+        "LABEL": "Número"
+      },
       "COUNTRY": {
         "PLACEHOLDER": "Digite o nome do país ",
         "LABEL": "Nome do País",
@@ -334,6 +346,9 @@
             "EMAIL": "e-mail",
             "PHONE_NUMBER": "Número de telefone",
             "COMPANY": "Empresa",
+            "ZIP_CODE": "CEP",
+            "ADDRESS": "Endereço",
+            "ADDRESS_NUMBER": "Número",
             "COUNTRY": "País/região",
             "CITY": "Cidade",
             "LAST_ACTIVITY": "Última atividade",
@@ -376,6 +391,9 @@
       "EMAIL": "e-mail",
       "PHONE_NUMBER": "Número de telefone",
       "IDENTIFIER": "Identificador",
+      "ZIP_CODE": "CEP",
+      "ADDRESS": "Endereço",
+      "ADDRESS_NUMBER": "Número",
       "COUNTRY": "País/região",
       "CITY": "Cidade",
       "CREATED_AT": "Criado em",
@@ -423,6 +441,15 @@
           },
           "CPF_CNPJ": {
             "PLACEHOLDER": "Digite um CPF ou CNPJ"
+          },
+          "ZIP_CODE": {
+            "PLACEHOLDER": "Digite o CEP"
+          },
+          "ADDRESS": {
+            "PLACEHOLDER": "Digite o endereço"
+          },
+          "ADDRESS_NUMBER": {
+            "PLACEHOLDER": "Digite o número"
           },
           "CITY": {
             "PLACEHOLDER": "Digite o nome da cidade"

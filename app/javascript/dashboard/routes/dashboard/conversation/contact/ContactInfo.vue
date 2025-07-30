@@ -63,6 +63,9 @@ export default {
     },
     location() {
       const {
+        zip_code = '',
+        address = '',
+        address_number = '',
         country = '',
         city = '',
         country_code: countryCode,

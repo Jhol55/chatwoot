@@ -37,6 +37,30 @@ const filterTypes = [
     attribute_type: 'standard',
   },
   {
+    attributeKey: 'zip_code',
+    attributeI18nKey: 'ZIP_CODE',
+    inputType: 'plain_text',
+    dataType: 'Number',
+    filterOperators: OPERATOR_TYPES_3,
+    attribute_type: 'standard',
+  },
+  {
+    attributeKey: 'address',
+    attributeI18nKey: 'ADDRESS',
+    inputType: 'plain_text',
+    dataType: 'Text',
+    filterOperators: OPERATOR_TYPES_3,
+    attribute_type: 'standard',
+  },
+  {
+    attributeKey: 'address_number',
+    attributeI18nKey: 'ADDRESS_NUMBER',
+    inputType: 'plain_text',
+    dataType: 'Number',
+    filterOperators: OPERATOR_TYPES_3,
+    attribute_type: 'standard',
+  },
+  {
     attributeKey: 'country_code',
     attributeI18nKey: 'COUNTRY',
     inputType: 'search_select',
@@ -106,6 +130,18 @@ export const filterAttributeGroups = [
       {
         key: 'identifier',
         i18nKey: 'IDENTIFIER',
+      },
+      {
+        key: 'zip_code',
+        i18nKey: 'ZIP_CODE',
+      },
+      {
+        key: 'address',
+        i18nKey: 'ADDRESS',
+      },
+      {
+        key: 'address_number',
+        i18nKey: 'ADDRESS_NUMBER',
       },
       {
         key: 'country_code',

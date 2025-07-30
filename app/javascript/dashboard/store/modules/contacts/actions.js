@@ -73,11 +73,6 @@ export const actions = {
     } catch (error) {
       commit(types.SET_CONTACT_UI_FLAG, { isFetching: false });
     }
-    try {
-      console.log(await ContactAPI.get(page, sortAttr, label))
-    } catch {
-      
-    }
   },
 
   show: async ({ commit }, { id }) => {

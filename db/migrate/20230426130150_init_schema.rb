@@ -360,6 +360,7 @@ class InitSchema < ActiveRecord::Migration[6.1]
       t.string "phone_number"
       t.string "cpf_cnpj", default: ""
       t.string "asaas_client_id", default: ""
+      t.boolean "is_client", default: false
       t.integer "account_id", null: false
       t.datetime "created_at", precision: nil, null: false
       t.datetime "updated_at", precision: nil, null: false
@@ -872,13 +873,6 @@ class InitSchema < ActiveRecord::Migration[6.1]
         for_each(:row) do
       "NEW.display_id := nextval('camp_dpid_seq_' || NEW.account_id);"
     end
-    create_table :clients, id: :bigserial do |t|
-      t.timestamps default: -> { 'NOW()' }
-      t.string :name
-      t.string :cpf, unique: true
-      t.string :remote_jid
-      t.text :asaas_client_id
-    end
     create_table :services, id: :bigserial do |t|
       t.timestamps default: -> { 'NOW()' }
       t.string :name
@@ -905,13 +899,6 @@ class InitSchema < ActiveRecord::Migration[6.1]
       t.jsonb :message, null: false
       t.datetime :created_at, default: -> { 'NOW()' }
     end
-    create_table :notifications, id: :bigserial do |t|
-      t.datetime :created_at, null: false, default: -> { 'NOW()' }
-      t.text :type
-      t.boolean :is_read
-      t.text :title
-      t.bigint :ref_id
-    end
     create_table :operating_hours, id: :bigserial do |t|
       t.datetime :created_at, null: false, default: -> { 'NOW()' }
       t.integer :day_of_week
@@ -922,7 +909,7 @@ class InitSchema < ActiveRecord::Migration[6.1]
     end
     create_table :prompts, id: :bigserial do |t|
       t.string :prompt
-      t.string :agent, unique: true
+      t.string :agent
     end
     create_table :settings, id: :bigserial do |t|
       t.datetime :created_at, null: false, default: -> { 'NOW()' }
@@ -940,11 +927,6 @@ class InitSchema < ActiveRecord::Migration[6.1]
       t.text :freq
       t.integer :interval
       t.boolean :blocked, default: false
-    end
-    create_table :user, id: :bigserial do |t|
-      t.datetime :created_at, null: false, default: -> { 'NOW()' }
-      t.string :email, null: false
-      t.string :password, null: false
     end
     create_table :appointments, id: :bigserial do |t|
       t.datetime :created_at, null: false, default: -> { 'NOW()' }

@@ -14,6 +14,10 @@ class ContactIpLookupJob < ApplicationJob
     return unless geocoder_result
 
     contact.additional_attributes ||= {}
+    contact.additional_attributes['city'] = geocoder_result.city;
+    contact.additional_attributes['zip_code'] = geocoder_result.zip_code;
+    contact.additional_attributes['address'] = geocoder_result.address;
+    contact.additional_attributes['address_number'] = geocoder_result.address_number;
     contact.additional_attributes['city'] = geocoder_result.city
     contact.additional_attributes['country'] = geocoder_result.country
     contact.additional_attributes['country_code'] = geocoder_result.country_code

@@ -49,6 +49,9 @@ export default {
         id: '',
         name: '',
       },
+      zipCode: '',
+      address: '',
+      addressNumber: '',
       city: '',
       socialProfileUserNames: {
         facebook: '',
@@ -162,6 +165,9 @@ export default {
           additionalAttributes.country ||
           this.$t('CONTACT_FORM.FORM.COUNTRY.SELECT_COUNTRY'),
       };
+      this.zipCode = additionalAttributes.zip_code || '';
+      this.address = additionalAttributes.address || '';
+      this.addressNumber = additionalAttributes.address_number || ''
       this.city = additionalAttributes.city || '';
       this.description = additionalAttributes.description || '';
       this.avatarUrl = this.contact.thumbnail || '';
@@ -194,6 +200,9 @@ export default {
           ...this.contact.additional_attributes,
           description: this.description,
           company_name: this.companyName,
+          zip_code: this.zipCode,
+          address: this.address,
+          address_number: this.addressNumber,
           country_code: this.country.id,
           country:
             this.country.name ===
@@ -384,6 +393,27 @@ export default {
         />
       </div>
     </div>
+    <woot-input
+      v-model="zipCode"
+      class="w-full"
+      :label="$t('CONTACT_FORM.FORM.ZIP_CODE.LABEL')"
+      :placeholder="$t('CONTACT_FORM.FORM.ZIP_CODE.PLACEHOLDER')"
+    />
+
+    <woot-input
+      v-model="address"
+      class="w-full"
+      :label="$t('CONTACT_FORM.FORM.ADDRESS.LABEL')"
+      :placeholder="$t('CONTACT_FORM.FORM.ADDRESS.PLACEHOLDER')"
+    />
+
+    <woot-input
+      v-model="addressNumber"
+      class="w-full"
+      :label="$t('CONTACT_FORM.FORM.ADDRESS_NUMBER.LABEL')"
+      :placeholder="$t('CONTACT_FORM.FORM.ADDRESS_NUMBER.PLACEHOLDER')"
+    />
+
     <woot-input
       v-model="city"
       class="w-full"

@@ -1,6 +1,5 @@
 <script setup>
-import { ref, computed, watchEffect } from 'vue';
-import { useI18n } from 'vue-i18n';
+import { ref, computed, watchEffect, watch } from 'vue';
 import ConversationApi from 'dashboard/api/inbox/conversation';
 import { useMapGetter } from 'dashboard/composables/store.js';
 
@@ -44,6 +43,27 @@ watchEffect(async () => {
     customConversationStats.value = data.meta;
   } catch (e) {}
 });
+
+watch(
+  () => conversationStats.value,
+  async (_, __, onCleanup) => {
+    const { type, id } = routeInfo.value;
+
+    if (!id) return;
+
+    const controller = new AbortController();
+    onCleanup(() => controller.abort());
+
+    try {
+      const { data } = await ConversationApi.meta(
+        type === 'team' ? { teamId: id } : { inboxId: id }
+      );
+      customConversationStats.value = data.meta;
+    } catch (e) {}
+  },
+  { immediate: true, deep: true }
+);
+
 
 const displayedAllCount = computed(() => {
   return customConversationStats.value?.all_count || 0;
@@ -106,7 +126,7 @@ const menuTitle = computed(() => (props.shouldTruncate ? props.label : ''));
             class="absolute right-0 top-0 flex justify-center items-center rounded-md text-xxs h-full min-w-[20px] bg-slate-50 dark:bg-slate-700 text-slate-700 dark:text-slate-100"
             :class="{'!bg-[#2781f61a] !text-woot-500 dark:!text-woot-500': isActive}"
           >
-            <span class="text-xs">
+            <span class="text-xxs">
               {{ displayedAllCount }}
             </span>
           </div>

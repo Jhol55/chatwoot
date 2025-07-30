@@ -496,6 +496,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_23_031839) do
     t.string "phone_number"
     t.string "cpf_cnpj", default: ""
     t.string "asaas_client_id", default: ""
+    t.boolean "is_client", default: false
     t.integer "account_id", null: false
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
@@ -1175,7 +1176,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_23_031839) do
 
   create_table "prompts", id: :bigserial, force: :cascade do |t|
     t.string "prompt"
-    t.string "agent", unique: true
+    t.string "agent"
   end
 
   create_table "settings", id: :bigserial, force: :cascade do |t|
